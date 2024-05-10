@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="720.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.mainMenuController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="720.0" prefWidth="866.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView fx:id="aptTV" layoutX="-2.0" layoutY="332.0" prefHeight="200.0" prefWidth="920.0">
+              <columns>
+                <TableColumn fx:id="apptId" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="apptTitle" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="apptDes" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="apptLoc" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="apptType" prefWidth="75.0" text="Type" />
+                  <TableColumn fx:id="apptStart" prefWidth="156.0" text="Start" />
+                  <TableColumn fx:id="apptEnd" minWidth="0.0" prefWidth="188.0" text="End" />
+                  <TableColumn fx:id="aptCusId" prefWidth="77.0" text="CustomerID" />
+                  <TableColumn fx:id="aptUserID" prefWidth="49.0" text="UserID" />
+                  <TableColumn fx:id="apptCon" prefWidth="74.0" text="Contact" />
+              </columns>
+            </TableView>
+            <TableView fx:id="cusTV" layoutX="42.0" layoutY="21.0" prefHeight="200.0" prefWidth="661.0">
+              <columns>
+                <TableColumn fx:id="cusID" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="cusName" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="cusAdd" prefWidth="150.0" text="Address" />
+                  <TableColumn fx:id="cusPos" minWidth="0.0" prefWidth="86.0" text="Postal Code" />
+                  <TableColumn fx:id="cusPho" prefWidth="142.0" text="Phone" />
+                  <TableColumn fx:id="cusFirst" prefWidth="132.0" text="First-Level-Div" />
+              </columns>
+            </TableView>
+            <ButtonBar layoutX="42.0" layoutY="240.0" prefHeight="40.0" prefWidth="400.0">
+              <buttons>
+                  <Button fx:id="addCustomer" mnemonicParsing="false" onAction="#onActionAddCustomer" text="Add Customer" />
+                  <Button fx:id="updateCustomer" mnemonicParsing="false" onAction="#onActionUpdateCustomer" text="Update Customer" />
+                  <Button fx:id="deleteCusbtn" mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete Customer" />
+              </buttons>
+            </ButtonBar>
+            <ButtonBar layoutX="14.0" layoutY="557.0" prefHeight="40.0" prefWidth="429.0">
+               <buttons>
+                  <Button mnemonicParsing="false" onAction="#onActionAddAppointment" text="Add Appointment" />
+                  <Button mnemonicParsing="false" onAction="#onActonUpdateApt" text="Update Appointment" />
+                  <Button fx:id="deleteAptBTN" mnemonicParsing="false" onAction="#onActionDeleteApt" text="Delete Appointment" />
+               </buttons>
+            </ButtonBar>
+            <RadioButton fx:id="allAPTBTN" layoutX="42.0" layoutY="315.0" mnemonicParsing="false" onAction="#onActionAllAppointments" selected="true" text="All Appointments">
+               <toggleGroup>
+                  <ToggleGroup fx:id="AppointmentSort" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="monthBTN" layoutX="156.0" layoutY="315.0" mnemonicParsing="false" onAction="#onActionMonth" text="This Month" toggleGroup="$AppointmentSort" />
+            <RadioButton fx:id="weekBTN" layoutX="237.0" layoutY="315.0" mnemonicParsing="false" onAction="#onActionWeek" text="This week" toggleGroup="$AppointmentSort" />
+            <DatePicker fx:id="apptDate" layoutX="479.0" layoutY="565.0" />
+            <Text layoutX="479.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Selected Appointment Time" />
+            <TextField fx:id="apptTimeStartTF" layoutX="479.0" layoutY="597.0" promptText="HH:mm" />
+            <Label layoutX="628.0" layoutY="601.0" text="Start" />
+            <Button fx:id="updateTimeBTN" layoutX="479.0" layoutY="664.0" mnemonicParsing="false" onAction="#onActionUpdateSelectedTime" text="Update Time" />
+            <Button fx:id="apptrep" layoutX="718.0" layoutY="21.0" mnemonicParsing="false" onAction="#onActionShowAppts" prefHeight="25.0" prefWidth="134.0" text="Appointment Report" />
+            <Button fx:id="cs" layoutX="718.0" layoutY="46.0" mnemonicParsing="false" onAction="#onActionShowContactShedule" prefHeight="25.0" prefWidth="134.0" text="Contact Schedule" />
+            <Button fx:id="cusByCounBTN" layoutX="718.0" layoutY="71.0" mnemonicParsing="false" onAction="#onActionShowCustomersByCountry" text="Customers by Country" />
+            <TextField fx:id="apptTimeEndTF" layoutX="479.0" layoutY="629.0" promptText="HH:mm" />
+            <Label layoutX="628.0" layoutY="633.0" text="End" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
